@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediksi Harga Rumah</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f1f5f9; margin: 0; padding: 2rem;
+    }
+    .card {
+      max-width: 520px; margin: 0 auto; background: #fff;
+      padding: 2rem; border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    }
+    h1 { font-size: 1.4rem; margin: 0 0 1.5rem; color: #0f172a; }
+    label { display: block; font-size: .85rem; color: #475569; margin-bottom: .25rem; }
+    input {
+      width: 100%; padding: .55rem; margin-bottom: 1rem;
+      border: 1px solid #cbd5e1; border-radius: 6px; font-size: .95rem;
+    }
+    button {
+      width: 100%; padding: .75rem; border: none; border-radius: 6px;
+      background: #2563eb; color: #fff; font-size: 1rem; cursor: pointer;
+    }
+    button:hover { background: #1d4ed8; }
+    .result {
+      margin-top: 1.5rem; padding: 1rem; background: #ecfdf5;
+      border: 1px solid #6ee7b7; border-radius: 8px; text-align: center;
+    }
+    .result .val { font-size: 1.8rem; font-weight: 700; color: #047857; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🏠 Prediksi Harga Rumah</h1>
+    <form method="POST">
+      {% for name, label, val in fields %}
+        <label>{{ label }} ({{ name }})</label>
+        <input type="number" step="any" name="{{ name }}" value="{{ val }}" required>
+      {% endfor %}
+      <button type="submit">Prediksi Harga</button>
+    </form>
+
+    {% if prediction %}
+      <div class="result">
+        <div>Estimasi harga:</div>
+        <div class="val">{{ prediction }}</div>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
